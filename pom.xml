@@ -29,7 +29,7 @@
 		<!-- cucumber options -->
 		<cucumber.stepsDefinitions>--glue / </cucumber.stepsDefinitions>
 		<cucumber.hooks>--glue	lippia/web/hooks</cucumber.hooks>
-		<cucumber.tags>--tags '@TestShop'</cucumber.tags>
+		<cucumber.tags>--tags '@TestLogin'</cucumber.tags>
 		<cucumber.reporters>--plugin pretty --plugin lippia.web.reporters.CucumberReporter:</cucumber.reporters>
 		<crowdar.cucumber.option>src/test/resources/web/features ${cucumber.hooks} ${cucumber.stepsDefinitions} --tags 'not @Ignore' ${cucumber.tags} ${cucumber.reporters}</crowdar.cucumber.option>
 
@@ -91,6 +91,21 @@
 				<crowdar.setupStrategy>web.SeleniumGridStrategy</crowdar.setupStrategy>
 				<!-- you can set your seleniumGrid url -->
 				<crowdar.driverHub>http://localhost:4444/wd/hub</crowdar.driverHub>
+			</properties>
+		</profile>
+		<profile>
+			<id>secuencial</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<cucumber.runner>testngSecuencial.xml</cucumber.runner>
+			</properties>
+		</profile>
+		<profile>
+			<id>parallel</id>
+			<properties>
+				<cucumber.runner>testngParallel.xml</cucumber.runner>
 			</properties>
 		</profile>
 

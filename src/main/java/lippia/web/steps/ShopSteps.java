@@ -10,12 +10,6 @@ import static lippia.web.constants.SuperiorNavigationBarConstants.BTN_READMORE_I
 
 public class ShopSteps extends PageSteps {
 
-    @Given("estoy en la pagina Automationtesting")
-    public void estoyEnLaPaginaAutomationtesting() {
-
-        SuperiorBarNavigationBarService.navegarWeb();
-    }
-
     @And("^hago click en \"(.*)\"$")
     public void hagoClickEnBotonMenuShop(String menuShopButton) {
 
