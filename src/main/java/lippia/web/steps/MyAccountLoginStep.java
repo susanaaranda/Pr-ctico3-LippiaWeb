@@ -2,7 +2,6 @@ package lippia.web.steps;
 import com.crowdar.core.PageSteps;
 import com.crowdar.core.PropertyManager;
 import io.cucumber.java.en.*;
-import lippia.web.services.HomeService;
 import lippia.web.services.MyAccountLoginService;
 import lippia.web.services.ShopService;
 import lippia.web.services.SuperiorBarNavigationBarService;
@@ -16,55 +15,36 @@ public class MyAccountLoginStep extends PageSteps {
     @Given("estoy en la pagina Automationtesting")
     public void estoyEnLaPaginaAutomationtesting() {
 
-        navigateTo(PropertyManager.getProperty("web.base.url"));
+        MyAccountLoginService.navegarWeb();
+
     }
 
-    @And("hago click en botón My Account del menu")
-    public void hagoClickEnBotonMyAccountDelMenu() {
+    @And("^hago click en botón \"(.*)\" del menu$")
+    public void hagoClickEnBotonMyAccountDelMenu(String myAccountButton) {
         MyAccountLoginService.clickBotonMyAccount();
     }
 
     @When("ingreso username (.*) valido")
     public void ingresoUsernameUsernameValido(String userName) {
+        MyAccountLoginService.clickBotonUsername();
 
-        MyAccountLoginService.ingresarUsername(userName);
     }
 
     @And("ingreso password (.*) valido")
     public void ingresoPasswordPasswordValido(String password) {
-
-        MyAccountLoginService.ingresarPassword(password);
+        MyAccountLoginService.clickBotonPassword();
     }
 
-    @When("ingreso un username (.*) no valido")
-    public void ingresoUsernameUsernameNoValido(String userNameNoValido) {
-        MyAccountLoginService.ingresarUsername(userNameNoValido);
-    }
-
-    @And("ingreso un password (.*) no valido")
-    public void ingresoPasswordPasswordNoValido(String passwordNoValido) {
-
-        MyAccountLoginService.ingresarPassword(passwordNoValido);
-    }
-
-
-    @And("hago click en boton Login")
-    public void hagoClickEnBoton() {
-
+    @And("^hago click en boton \"(.*)\"$")
+    public void hagoClickEnBoton(String loginButton) {
         MyAccountLoginService.clickBotonLogin();
     }
 
-    @Then("se visualiza un mensaje(.*)")
-    public void seVisualizaUnMensaje(String mensaje) {
-        MyAccountLoginService.visualizaMensaje(mensaje);
-            HomeService.cerrarDriver();
-
+    @Then("se visualiza el dashboard de la aplicacion")
+    public void seVisualizaElDashboardDeLaAplicacion() {
     }
 
-    @Then("se visualiza un (.*) de error")
-    public void seVisualizaUnMensajeDeError(String mensaje) {
-        MyAccountLoginService.visualizaError(mensaje);
-       // HomeService.cerrarDriver();
-
+    @Then("se visualiza mensaje (.*) de error")
+    public void seVisualizaMensajeMensajeDeError() {
     }
 }

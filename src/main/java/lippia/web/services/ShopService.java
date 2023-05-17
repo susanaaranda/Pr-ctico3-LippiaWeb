@@ -13,6 +13,9 @@ public class ShopService {
    //private static final String FILTER_BY_PRICE_LABEL = "xpath://*[@id='woocommerce_price_filter-2']/h4";
     private static final String BTN_MENUSHOP_ID = "id:menu-item-40";
 
+   // public static void verifyPage() {
+      //  Assert.assertTrue( ActionManager.waitPresence( FILTER_BY_PRICE_LABEL ).isDisplayed() );
+  //  }
 
     public static void clickReadMore()    {  click(BTN_READMORE_ID);
     }
