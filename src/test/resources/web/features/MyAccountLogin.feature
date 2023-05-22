@@ -1,4 +1,4 @@
-@TestLogin
+@LoginLogout
 Feature: MyAccountLogin
 
   Background:
@@ -10,7 +10,7 @@ Feature: MyAccountLogin
     When ingreso username <username> valido
     And ingreso password <password> valido
     And hago click en boton Login
-    Then se visualiza un mensaje<mensaje>
+    Then se visualiza un mensaje <mensaje>
 
     Examples:
     |username          |password      |mensaje |
@@ -31,7 +31,20 @@ Feature: MyAccountLogin
     |susyw8@hotmail.com|              |Error   |
     |                  |              |Error   |
 
-
+   @Logout
+   Scenario: Desloguearse exitosamente
+   When ingreso username <username> valido
+    And ingreso password <password> valido
+    And hago click en boton Login
+    And se visualiza el dashboard con un mensaje <mensaje>
+	When hago click en el boton Logout
+	And se visualiza la pagina de Login
+	And hago click en boton Retroceder una pagina
+	Then se visualiza la pagina de Login
+	
+    Examples:
+    |username          |password      |mensaje |
+    |susyw6@hotmail.com|Bienvenido*456|Hello   |
 
 
 
