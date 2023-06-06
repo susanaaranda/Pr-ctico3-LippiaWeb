@@ -16,8 +16,5 @@ public class SuperiorBarNavigationBarService extends ActionManager {
     }
 
 
-    public static void clickMenuShop() {
 
-        WebActionManager.click( BTN_MENUSHOP_ID );
-    }
 }

@@ -1,21 +1,34 @@
-@TestShop
+@Shop
 Feature: Shop
 
    Background:
      Given estoy en la pagina Automationtesting
      And hago click en "Menu Shop"
 
-  Scenario: Verificar la funcionalidad Read More exitosamente
-    When hago click en boton "Read More" del primer libro
-    Then se visualiza informacion del libro con la leyenda "Out of Stock"
-
-  Scenario Outline: Visualizar libros por Categoria <categoria> exitosamente
-    When hago click en Categoria <categoria> de la seccion Product Categories
-    Then se visualizan libros de la categoria seleccionada
+  @ReadMore
+  Scenario Outline: Verificar la funcionalidad Read More exitosamente
+    When hago click en boton 'Read More' de un <libro> sin stock
+    And se visualiza la pagina del libro <libro>
+    Then se visualiza informacion del libro con la leyenda <leyenda>
 
     Examples:
-      | categoria  |
-      | Android    |
-      | HTML       |
-      | JavaScript |
-      | Selenium   |
+    |libro                       |leyenda      |
+    |Android Quick Start Guide   |Out of Stock |
+    |Functional Programming in JS|Out of Stock |
+
+
+  @ClasificacionPorDefecto
+  Scenario Outline: Visualizar libros por <default sorting> exitosamente
+    When hago click en <default sorting> del menú Default Sorting
+    Then se visualizan los libros buscados por <default sorting>
+
+    Examples:
+      |default sorting           |
+      |Sort by popularity        |
+      |Sort by average rating    |
+      |Sort by newness           |
+      |Sort by price: low to high|
+      |Sort by price: high to low|
+
+
+

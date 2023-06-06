@@ -1,22 +1,13 @@
 package lippia.web.services;
-
-import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
+import com.crowdar.driver.DriverManager;
 import lippia.web.constants.MyAccountLoginConstant;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-
-import static com.crowdar.core.actions.WebActionManager.click;
-import static com.crowdar.core.actions.WebActionManager.navigateTo;
 import static lippia.web.constants.MyAccountLoginConstant.*;
 
-public class MyAccountLoginService extends ActionManager {
-    private static final String INPUT_TEXT_USERNAME = "id:username";
-    private static final String INPUT_TEXT_PASSWORD = "id:password";
 
-    private static final String INPUT_TEXT_PASSWORD_REGISTER = "xpath://*[@id='reg_password']";
-    private static final String TEXT_LOGOUT = "xpath://a[text()='Logout']";
-    private static final String TEXT_MENSAJE = "xpath://*[contains(text(),'Hello')]";
-    private static final String TEXT_MENSAJE_ERROR = "xpath://*[contains(text(),'Error')]";
+public class MyAccountLoginService extends ActionManager {
 
     public static void clickBotonMyAccount(){
 
@@ -28,7 +19,7 @@ public class MyAccountLoginService extends ActionManager {
         ActionManager.waitClickable(INPUT_TEXT_USERNAME).sendKeys(usuario);
     }
 
-    public static void ingresarPassword(String clave){
+    public static void ingresarPasswords(String clave){
 
         ActionManager.waitClickable(INPUT_TEXT_PASSWORD).sendKeys(clave);
     }
@@ -38,13 +29,31 @@ public class MyAccountLoginService extends ActionManager {
         click(MyAccountLoginConstant.BTN_LOGIN);
     }
 
-    public static void visualizaMensaje (String mensaje){
+    public static void visualizaMensaje(String mensaje){
 
-        Assert.assertTrue(TEXT_MENSAJE.contains(mensaje));
+       Assert.assertTrue(TEXT_MENSAJE.contains(mensaje));
     }
 
     public static void visualizaError(String mensajeError){
         Assert.assertTrue(TEXT_MENSAJE_ERROR.contains(mensajeError));
     }
 
+    public static void clickBotonSignOut() {
+
+        click(BTN_SIGNOUT);
+    }
+
+    public static void clickBotonRetroceder() {
+        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+        driver.navigate().back();
+    }
+
+    public static void ingresarPasswordN(String passwordNoValido) {
+        ActionManager.waitClickable(INPUT_PASSWORD_N).sendKeys(passwordNoValido);
+    }
+
+    public static void visualizaLogin() {
+
+        Assert.assertTrue(ActionManager.waitPresence(LOGIN_TITULO).isDisplayed());
+    }
 }

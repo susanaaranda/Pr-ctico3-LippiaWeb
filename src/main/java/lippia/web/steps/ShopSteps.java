@@ -1,37 +1,46 @@
 package lippia.web.steps;
-
 import com.crowdar.core.PageSteps;
 import io.cucumber.java.en.*;
 import lippia.web.services.ShopService;
-import lippia.web.services.SuperiorBarNavigationBarService;
 
-import static com.crowdar.core.actions.WebActionManager.click;
-import static lippia.web.constants.SuperiorNavigationBarConstants.BTN_READMORE_ID;
 
 public class ShopSteps extends PageSteps {
 
     @And("^hago click en \"(.*)\"$")
-    public void hagoClickEnBotonMenuShop(String menuShopButton) {
-
+    public void hagoClickEnMenuShop(String arg) {
         ShopService.clickMenuShop();
     }
 
-    @When("hago click en Categoria (.*) de la seccion Product Categories")
-    public void hagoClickEnCategoriaCategoriaDeLaSeccion(String categoria) {
+    @Then("se visualiza informacion del libro con la leyenda (.*)")
+    public void seVisualizaInformacionDelLibroConLaLeyenda(String leyenda) {
+
+        ShopService.visualizaLeyenda(leyenda);
     }
 
-    @Then("se visualizan libros de la categoria seleccionada")
-    public void seVisualizanLibrosDeLaCategoriaSeleccionada() {
+    @Then("se visualizan los libros buscados")
+    public void seVisualizanLosLibrosBuscados() {
     }
 
-    @When("^hago click en boton \"(.*)\" del primer libro$")
-   public void hagoClickEnBotonDelPrimerLibro(String primerLibroButton) {
-
-        //ShopService.clickReadMore();
+    @When("hago click en (.*) del menú Default Sorting")
+    public void hagoClickEnDefaultSortingDelMenú(String sorting) {
+        ShopService.clickEnDefault();
+        ShopService.clickDefaulSorting(sorting);
     }
 
-    @Then("se visualiza informacion del libro con la leyenda {string}")
-    public void seVisualizaInformacionDelLibroConLaLeyenda(String arg0) {
+    @Then("se visualizan los libros buscados por (.*)")
+    public void seVisualizanLosLibrosBuscadosPorDefaultSorting(String elemento) {
+        ShopService.visualizarBusqueda(elemento);
     }
 
+    @When("hago click en boton 'Read More' de un (.*) sin stock")
+    public void hagoClickEnBotonDeUnLibroSinStock(String libro) {
+
+        ShopService.clickSinStock(libro);
+    }
+
+    @And("se visualiza la pagina del libro (.*)")
+    public void seVisualizaLaPaginaDelLibroLibro(String libro) {
+
+        ShopService.visualizaPaginaLibro(libro);
+    }
 }
